@@ -1,0 +1,565 @@
+ <form role="form"  class="login-form"   id="login-form"> 
+
+
+                                        <div class="form-group">
+                                            <label class="sr-only" for="email">email</label>
+                                            <input type="email" name="email" placeholder="email"  value="mail" class="email form-control" id="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="password">Password</label>
+                                            <input type="password" name="password" placeholder="Password"  value="pwd" class="form-password form-control" id="password">
+                                        </div>
+                                        <button type="submit" class="btn"   id="login-submit-button">Sign in!</button>
+                                    </form>
+
+
+                                   <!-- 
+                                  //  function logincheck() {
+
+										// var myjson;
+										// $.getJSON("http://52.36.157.26:80/signin", function(json){
+										//     myjson = json;
+										// });
+
+          //                           	var login_status = JSON.parse(
+          JSON.stringify(myjson));
+          //                           	//alert(login_status);
+										// if (login_status.status_code="1") {
+										// 	alert("success");
+										// 	location.href("http://google.com");
+										// }
+										// else{
+
+										//   location.href("https://www.w3schools.com");                
+
+										//                                     }}
+
+
+//var data = new FormData();
+//data.append('email', 'email');
+//data.append('password', 'password');
+
+//alert(data);
+
+//var xhReq = new XMLHttpRequest();
+
+/*
+ xhReq.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      this.responseText;
+    }
+  };
+ */
+/*
+
+xhReq.open("GET", "http://52.36.157.26:80/signin", true);
+
+xhReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+xhReq.send('email=mail&password=pwd');
+
+//xhReq.onload = function () {
+
+var jsonObject = JSON.parse(xhReq.responseText);
+
+alert("success")}
+                              
+
+var cli = new XMLHttpRequest();
+cli.onreadystatechange = function() {
+        if (cli.readyState === 4) {
+            if (cli.status === 200) {
+                       // OK
+                       alert('response:'+cli.responseText);
+                       // here you can use the result (cli.responseText)
+            } else {
+                       // not OK
+                       alert('failure!');
+            }
+        }
+};
+cli.open('GET', "http://52.36.157.26:80/signin");
+cli.send('email=mail&password=pwd');
+
+}
+
+*/
+
+/*
+$('#login-form')
+    .post({"http://52.36.157.26:80/signin",{email:mail, password:pwd} ,       success : function (response) {
+            alert("The server says: " + response);
+        }
+    });}
+
+*/
+
+// $.post( "http://52.36.157.26:80/signin",{ email: email, password: password}, function( data ){
+
+// alert("Success");
+// alert("the server says:" + data);
+// });
+
+
+
+// function submitForm(form){
+//     var url = ("http://52.36.157.26:80/signin?");
+//     var formData = {};
+//     $(form).find("input[name]").each(function (index, node) {
+//         formData[node.name] = node.value;
+//     });
+//     $.post(url, formData).done(function (data) {
+//         alert(data);
+//     });
+// }
+
+//}
+ -->
+
+<script type='text/javascript'>
+
+
+// $(document).ready(function(){
+//     $("login-submit-button").click(function(){
+//         $.get("http://52.36.157.26:80/signin?", function(data, status){
+//             alert("Data: " + data + "\nStatus: " + status);
+//         });
+//     });
+// });
+
+$('#login-form').ajaxForm({
+        url : "http://52.36.157.26:80/signin?", // or whatever
+        dataType : 'json',
+        type:'GET',
+        success : function (response) {
+            alert("The server says: " + response);
+        }
+    })
+;
+// this is the id of the form
+// $("#login-form").submit(function(e) {
+
+//     var url = "http://52.36.157.26:80/signin?"; // the script where you handle the form input.
+
+//     $.ajax({
+//            type: "GET",
+//            url: url,
+//            data: $("#login-form").serialize(), // serializes the form's elements.
+//            success: function(data)
+//            {
+//               // alert(data); // show response from the php script.
+//            }
+//          });
+
+//     e.preventDefault(); // avoid to execute the actual submit of the form.
+// });
+
+// $('#login-form').submit(function(){
+//     $.ajax({
+//       url: $('#login-form').attr('action'),
+//       type: "get",
+//       data : $('#login-form').serialize(),
+//       success: function(){
+//         console.log('form submitted.');
+//         alert(data);
+//       }
+//     });
+//     return false;
+// });
+
+
+
+
+// function myfunction(){
+
+// var myform = document.getElementById("login-form");
+//     var fd = new FormData(myform );
+//     $.ajax({
+//         url: "http://52.36.157.26:80/signin?",
+//         data: fd,
+//         cache: false,
+//         processData: false,
+//         contentType: false,
+//         type: 'GET',
+//         success: function (dataofconfirm) {
+
+// alert(dataofconfirm);
+// alert('success');
+//         }
+//     });
+
+// }
+// var myForm = document.forms["login-form"];
+ 
+// myForm.onsubmit = function(event){
+//   event.preventDefault(); //Prevents page from Reloading
+ 
+//   var action = this.getAttribute("action"), //Getting Form Action URL
+//   method = this.getAttribute("method"); //Getting Form Submit Method (Post/Get)
+ 
+//   var email = document.getElementById("email"),
+//   pwd = document.getElementById("password");
+ 
+//    ...Form Validation Code Goes Here... 
+ 
+//   //Submitting Form Using Ajax
+ 
+//   var data = new FormData(myForm);
+ 
+//   var http = new XMLHttpRequest();
+//   http.open(method,action,true);
+//   http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+//   http.onload = function() {
+//   if (http.status == 200) {
+//    alert(data);
+//   alert("Form Submitted");
+ 
+//   }
+//   };
+ 
+
+//  http.send(data); 
+ 
+// };
+
+
+//  var form = document.getElementById("login-form");
+
+// function logincheck(SOME_DATA) {
+// 	$.ajax({
+//             type : "GET",
+//             url : "http://52.36.157.26:80/signin?",
+//             // data : 'SOME_DATA',
+//             data: JSON.stringify(SOME_DATA),
+
+//              contentType: "application/json; charset=utf-8",
+//              crossDomain: true,
+//              dataType: "json",
+//             success: function(response) {
+//             	//alert('success');
+//             	alert(data);
+
+//             }
+//     })};
+
+//     form.onsubmit = function (e) {
+//       // stop the regular form submission
+//       e.preventDefault();
+
+
+//  var SOME_DATA = {};
+//       for (var i = 0, ii = form.length; i < ii; ++i) {
+//         var input = form[i];
+//         if (input.name) {
+//           SOME_DATA[input.name] = input.value;
+//         }
+//       }
+
+//       logincheck(SOME_DATA);
+// }
+
+
+
+// var data = new FormData();
+// data.append('email', 'email');
+// data.append('password', 'password');
+
+// alert(data);
+
+// var xhReq = new XMLHttpRequest();
+
+
+//  xhReq.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//       this.responseText;
+//     }
+//   };
+ 
+
+
+// xhReq.open("GET", "http://52.36.157.26:80/signin", true);
+
+// xhReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+// xhReq.send('email=mail&password=pwd');
+
+// xhReq.onload = function () {
+
+// var jsonObject = JSON.parse(xhReq.responseText);
+
+// alert("success")}
+
+
+// var form = document.getElementById("login-form");
+
+// function logincheck(SOME_DATA) {
+// 	$.ajax({
+//             type : "GET",
+//             url : "http://52.36.157.26:80/signin?",
+//             // data : 'SOME_DATA',
+//             data: JSON.stringify(SOME_DATA),
+
+//              contentType: "application/json; charset=utf-8",
+//              crossDomain: true,
+//              dataType: "json",
+//             success: function(response) {
+//             	//alert('success');
+//             	alert(data);
+
+//             }
+//     })};
+
+//     form.onsubmit = function (e) {
+//       // stop the regular form submission
+//       e.preventDefault();
+
+
+//  var SOME_DATA = {};
+//       for (var i = 0, ii = form.length; i < ii; ++i) {
+//         var input = form[i];
+//         if (input.name) {
+//           SOME_DATA[input.name] = input.value;
+//         }
+//       }
+
+//       logincheck(SOME_DATA);
+// }
+
+
+
+    // /* attach a submit handler to the form */
+    // $("#login-form").submit(function(event) {
+
+    //   /* stop form from submitting normally */
+    //   event.preventDefault();
+
+    //   /* get the action attribute from the <form action=""> element */
+    //   var $form = $( this ),
+    //       url = $form.attr( 'action' );
+
+    //   /* Send the data using post with element id name and name2*/
+    //   var posting = $.post( url, { email: $('#email').val(), password: $('#password').val() } );
+
+    //   /* Alerts the results */
+    //   posting.done(function( data ) {
+    //     alert('success');
+    //   });
+    // });
+
+
+
+
+
+/*var myForm = document.forms["login-form"];
+ 
+myForm.onsubmit = function(event){
+  event.preventDefault(); //Prevents page from Reloading
+ 
+  var action = this.getAttribute("action"), //Getting Form Action URL
+  method = this.getAttribute("method"); //Getting Form Submit Method (Post/Get)
+ 
+  var email = document.getElementById("email"),
+  pwd = document.getElementById("password");
+ 
+  /* ...Form Validation Code Goes Here... */
+ 
+  //Submitting Form Using Ajax
+ 
+  /*var data = new FormData(myForm);
+ 
+  var http = new XMLHttpRequest();
+  http.open(method,action,true);
+  http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+  http.onload = function() {
+  if (http.status == 200) {
+   
+  alert("Form Submitted");
+ 
+  }
+  };
+ 
+
+ http.send(data); 
+ 
+};
+
+
+function init2() {
+    jQuery.ajax({
+        url: "http://52.36.157.26:80/signin?",
+        type: "post",
+        dataType: "json",
+        async: false,
+        success: function (data) {
+            console.log(data);
+        }
+    });
+}
+
+
+var email = document.getElementById("email");
+var password = document.getElementById("password");
+
+var request = $.ajax({
+  url: "http://52.36.157.26:80/signin?",
+  type: "GET",
+  data: {email : email, password: password },
+  dataType: "json"
+});
+
+request.done(function(msg) {
+  $("#log").html( msg );
+});
+
+request.fail(function(jqXHR, textStatus) {
+  alert( "Request failed: " + textStatus );
+});
+
+
+
+
+function ajaxRequest(){
+ var activexmodes=["Msxml2.XMLHTTP", "Microsoft.XMLHTTP"] //activeX versions to check for in IE
+ if (window.ActiveXObject){ //Test for support for ActiveXObject in IE first (as XMLHttpRequest in IE7 is broken)
+  for (var i=0; i<activexmodes.length; i++){
+   try{
+    return new ActiveXObject(activexmodes[i])
+   }
+   catch(e){
+    //suppress error
+   }
+  }
+ }
+ else if (window.XMLHttpRequest) // if Mozilla, Safari etc
+  return new XMLHttpRequest()
+ else
+  return false
+}
+
+var myajaxrequest=new ajaxRequest()
+
+
+
+var mygetrequest=new ajaxRequest()
+mygetrequest.onreadystatechange=function(){
+ if (mygetrequest.readyState==4){
+  if (mygetrequest.status==200 || window.location.href.indexOf("http")==-1){
+   document.getElementById("result").innerHTML=mygetrequest.responseText
+  }
+  else{
+   alert("An error has occured making the request")
+  }
+ }
+}
+var namevalue=encodeURIComponent(document.getElementById("email").value)
+var agevalue=encodeURIComponent(document.getElementById("password").value)
+mygetrequest.open("GET", "http://52.36.157.26:80/signin?email="+email+"&password="+password, true)
+mygetrequest.send(null)*/
+
+                                  
+
+
+
+
+ <!--                             
+
+// $('#login-form').submit(function(){
+//     $.ajax({
+//       url: $('#login-form').attr('action'),
+//       type: "get",
+//       data : $('#login-form').serialize(),
+//       success: function(){
+//         console.log('form submitted.');
+//       }
+//     });
+//     return false;
+// });
+
+
+
+
+
+
+                     
+// var form = document.getElementById("myform");
+// function addData(data){
+//      $.ajax({
+//              type: "POST",
+//              url: "http://52.36.157.26:80/signup",
+//              data: JSON.stringify(data),
+//              contentType: "application/json; charset=utf-8",
+//              crossDomain: true,
+//              dataType: "json",
+//              success: function (data, status, jqXHR) {
+
+//                  alert(success);
+// 				 var code = data["status_code"];
+// 				 console.log(code);
+// 				 console.log(data);
+				 
+				 
+//              },
+
+//              error: function (jqXHR, status) {
+//                  // error handler
+//                  console.log(jqXHR);
+//                  alert('fail' + status.code);
+// 				 window.location.replace("http://www.linkedin.com");
+//              }
+//           });
+//     }
+//     form.onsubmit = function (e) {
+//       // stop the regular form submission
+//       e.preventDefault();
+
+//       // collect the form data while iterating over the inputs
+//       var data = {};
+//       for (var i = 0, ii = form.length; i < ii; ++i) {
+//         var input = form[i];
+//         if (input.name) {
+//           data[input.name] = input.value;
+//         }
+//       }
+//       addData(data);
+// 	 }     
+
+
+
+
+// var form = document.getElementById("login-form");
+
+// function logincheck(SOME_DATA) {
+// 	$.ajax({
+//             type : "GET",
+//             url : "http://52.36.157.26:80/signin?",
+//             // data : 'SOME_DATA',
+//             data: JSON.stringify(SOME_DATA),
+
+//              contentType: "application/json; charset=utf-8",
+//              crossDomain: true,
+//              dataType: "json",
+//             success: function(response) {
+//             	alert('success');
+
+//             }
+//     })};
+
+//     form.onsubmit = function (e) {
+//       // stop the regular form submission
+//       e.preventDefault();
+
+
+//  var SOME_DATA = {};
+//       for (var i = 0, ii = form.length; i < ii; ++i) {
+//         var input = form[i];
+//         if (input.name) {
+//           SOME_DATA[input.name] = input.value;
+//         }
+//       }
+
+//       logincheck(SOME_DATA);
+// }
+
+</script> s

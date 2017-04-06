@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CleepCam Login &amp; Register</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+    <!-- Top content -->
+    <div class="top-content">
+
+        <div class="inner-bg">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+    <img src="logo.png" style="float: center" onclick="LoginRegister.html">
+    <div class="description">
+                            <p>
+                                The World's Most Intelligent Camera!
+                            </p>
+                        </div>
+                           
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5">
+
+                        <div class="form-box">
+                            <div class="form-top">
+                                <div class="form-top-left">
+                                    <h3>Login to our site</h3>
+                                    <p>Enter username and password to log on:</p>
+                                </div>
+                                <div class="form-top-right">
+                                    <i class="fa fa-key"></i>
+                                </div>
+                            </div>
+                            <div class="form-bottom">
+                             <!--  <form role="form" action="http://52.36.157.26:80/signin?"  method="get" class="login-form" id="login-form">--> 
+
+                             <form role="form"  action="http://52.36.157.26:80/signin?" class="login-form" id="loginform" name="loginform"> 
+
+                                <div class="form-group">
+                                    <label class="sr-only" for="email">Email</label>
+                                    <input type="text" name="email" placeholder="email"  value="E-Mail" class="form-email form-control" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="password">Password</label>
+                                    <input type="password" name="password" placeholder="Password"  value="Password" class="form-password form-control" id="password">
+                                </div>
+                                <button type="submit" class="btn" name="login-submit-button"  id="login-submit-button">Sign in!</button>
+                            </form></div></div>
+                            <br>
+
+
+                            <div>
+
+                                <LABEL id="ajaxResponse2" style="color: red"></LABEL>
+
+                            </div>
+
+
+
+                            <script type="text/javascript">
+
+
+                                $(document).ready(function() {
+
+  //Stops the submit request
+  $("#loginform").submit(function(e) {
+    e.preventDefault();
+});
+
+  //checks for the button click event
+  $("#login-submit-button").click(function(e) {
+
+    //get the form data and then serialize that
+    dataString = $("#loginform").serialize();
+
+    //get the form data using another method
+    var email = $("input#email").val();
+    var password = $("input#password").val();
+
+    dataString = "email=" + email + "&password=" +password;
+
+    //make the AJAX request, dataType is set to json
+    //meaning we are expecting JSON data in response from the server
+    $.ajax({
+      type: "GET",
+      url: "http://52.36.157.26:80/signin?",
+      data: dataString,
+      dataType: "json",
+
+      //if received a response from the server
+      success: function(response) {
+        if (response.status_code=='1') {
+        	var loginid=response.id_no;
+        	var uname=response.name;
+
+        	//alert("id:" +loginid);
+
+			//alert("user name:" +uname);
+
+
+            sessionStorage.setItem('uname', uname);
+            sessionStorage.setItem('loginid', loginid);
+
+
+
+
+            window.location.href='AdminPage.html';
+        }
+        else if (response.status_code=='0') {
+			//alert(response.msg);
+            document.getElementById('ajaxResponse2').innerHTML = 'Error! Try Again!  ';
+            $("#ajaxResponse2").append(""+ response.msg);
+
+            document.getElementById("loginform").reset();
+
+
+        	//window.location.href='LoginRegister.html';
+        }
+    },
+
+});
+});
+
+});
+
+</script>
+
+
+
+
+
+<div class="social-login">
+    <h3>...or login with:</h3>
+    <div class="social-login-buttons">
+        <a class="btn btn-link-1 btn-link-1-facebook" href="#">
+            <i class="fa fa-facebook"></i> Facebook
+        </a>
+        <a class="btn btn-link-1 btn-link-1-twitter" href="#">
+            <i class="fa fa-twitter"></i> Twitter
+        </a>
+        <a class="btn btn-link-1 btn-link-1-google-plus" href="#">
+            <i class="fa fa-google-plus"></i> Google Plus
+        </a>
+    </div>
+</div>
+
+</div>
+
+<div class="col-sm-1 middle-border"></div>
+<div class="col-sm-1"></div>
+
+<div class="col-sm-5">
+
+    <div class="form-box">
+        <div class="form-top">
+            <div class="form-top-left">
+                <h3>Sign up now</h3>
+                <p>Fill in the form below to get instant access:</p>
+            </div>
+            <div class="form-top-right">
+                <i class="fa fa-pencil"></i>
+            </div>
+        </div>
+        <div class="form-bottom">
+            <form id="signupform" role="form"   class="registration-form">
+                <div class="form-group">
+                    <label class="sr-only" for="name">Name</label>
+                    <input type="text" name="name" placeholder="First Name & Last Name" class="form-first-name form-control" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="email">Email</label>
+                    <input type="text" name="semail" placeholder="Email Address" class="form-first-name form-control" id="semail" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <input type="password" name="spassword" placeholder="Password" class="form-password-create form-control" id="spassword" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="phoneno">Phone Number</label>
+                    <input type="text" name="phoneno" placeholder="(XXX)-XXX-XXXX" class="form-phone form-control" id="phoneno" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="address">Address</label>
+                    <input type="text" name="address" placeholder="Address" class="form-address form-control" id="address" required>
+                </div>
+
+                <button type="submit" id="signupbutton" class="btn">Sign me up!</button>
+            </form>
+
+            <br>
+            <LABEL id="ajResponse" style="color: green"></LABEL>    <LABEL id="ajResponse2" style="color: red"></LABEL>
+
+            <script type="text/javascript">
+
+
+
+                $(document).ready(function() {
+
+  //Stops the submit request
+  $("#signupform").submit(function(e) {
+    e.preventDefault();
+});
+
+  //checks for the button click event
+  $("#signupbutton").click(function(e) {
+
+    //get the form data and then serialize that
+    SUdataString = $("#signupform").serialize();
+
+    //get the form data using another method
+    var name = $("input#name").val();
+    var Semail = $("input#semail").val();
+    var Spassword = $("input#spassword").val();
+    var phone = $("input#phoneno").val();
+    var address = $("input#address").val();
+
+    SUdataString ="email="+Semail+"&password="+Spassword+"&name="+name+"&address="+address+"&phoneno="+phone;
+
+    //make the AJAX request, dataType is set to json
+    //meaning we are expecting JSON data in response from the server
+    $.ajax({
+      type: "POST",
+      url: "http://52.36.157.26:80/signup?"+SUdataString,
+     // data: SUdataString,
+     dataType: "json",
+
+      //if received a response from the server
+      success: function(response) {
+      	////alert(SUdataString);      	
+        $("#ajaxResponse").append("<b>Msg:</b> "+ response.msg);
+        $("#ajaxResponse").append("<b>ID:</b> " + response.id_no);
+        $("#ajaxResponse").append("<b>status_code:</b> " + response.status_code);
+
+        if (response.status_code=='1') {
+            document.getElementById('ajResponse2').innerHTML = '';
+            document.getElementById('ajResponse').innerHTML = 'Succesfully Registered! Please Verify Your E-Mail!';
+            document.getElementById("signupform").reset();
+
+
+
+
+        	//alert("id:" +response.id_no);
+//alert("Sign Up Complete!");
+//alert(response.msg);
+}
+
+
+
+else if (response.status_code=='0') {
+        	//alert("Error Occured");
+        	//alert(response.msg);
+            document.getElementById('ajResponse').innerHTML = '';
+            document.getElementById('ajResponse2').innerHTML = 'Error! Try Again!  ';
+            $("#ajResponse2").append(""+ response.msg);
+            document.getElementById("signupform").reset();
+
+
+
+
+
+
+        }
+    },
+
+});
+});
+
+});                 </script>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="footer-border"></div>
+                <p>&copy CleepCam</p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<!-- Javascript -->
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/scripts.js"></script>
+
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+            <![endif]-->
+
+        </body>
+
+        </html>

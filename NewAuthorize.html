@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CleepCam Admin</title>
+
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript">
+function checklogin(){
+    if (sessionStorage.getItem('uname')===null | sessionStorage.getItem('uname')==='null')
+
+{
+    alert("Please Login First!");
+    window.location.href='LoginRegister.html';
+}
+
+}
+
+window.onload=checklogin;
+
+        var uname = sessionStorage.getItem('uname');
+
+
+</script>
+    <!-- Custom CSS -->
+    <link href="css/thumbnail-gallery.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="AdminPage.html">CleepCam Home</a>
+                </div>
+
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="NewAuthorize.html">New Upload</a>
+                        </li>
+
+                        <li>
+                            <a href="AllAuthorized.html">My Page</a>
+                        </li>
+
+                         <li>
+                            <a href="#" ; onclick="logOut()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script type="text/javascript">
+
+
+function logOut(){
+    //alert("clearning sessionStorage");
+        sessionStorage.clear();
+      //  //alert("uname:"+uname);
+        //        //alert("id:"+loginid);
+                            window.location.href='LoginRegister.html';
+
+
+    }
+</script>
+
+
+             <p style="text-align: center;">Hello:  <span id="usernamespan"></span></p>
+
+             <script type="text/javascript">
+
+              $("#usernamespan").append(uname);
+
+
+            </script>
+        <!-- Page Content -->
+       <div>
+    
+    <LABEL id="ajaxResponse" style="color: green"></LABEL>    <LABEL id="ajaxResponse2" style="color: red"></LABEL>
+
+</div>
+
+            <p>Upload New: <br></p>
+            <form id="file-form" method="post" enctype="multipart/form-data"  > <!--id="file-form" action="http://52.36.157.26:80/upload?" method="POST" enctype="multipart/form-data" -->
+
+                <div class="form-group" >
+                    <label class="sr-only" for="name">Name</label>
+                    <input type="text" name="name" placeholder="Name" class="form-first-name form-control" id="name">
+                </div>
+                <div class="form-group">
+                <input type="file" id="file-select" name="file" multiple/>
+                <input type="button" value="Submit" onclick="codeAddress()"/>
+                </div>
+            </form>
+
+            <script type="text/javascript">
+
+// var form = document.getElementById('file-form');
+// var fileSelect = document.getElementById('file-select');
+// var uploadButton = document.getElementById('upload-button');
+
+var loginid = sessionStorage.getItem('loginid');
+
+    //alert("login id:" +loginid);
+
+
+function codeAddress()  
+{
+    var name = $("input#name").val();
+
+    //alert("ji")
+    var formdata = new FormData();
+    var fileSelect = document.getElementById('file-select');
+    formdata.append('file', fileSelect.files[0]);
+    var data1;
+        //var form_data = new FormData($('#file-select')[0]);
+        $.ajax({
+            type: 'POST',
+            url: 'http://52.36.157.26:80/upload?name='+name+'&id='+loginid,
+            data: formdata,
+            contentType: false,
+            cache: false,
+            crossDomain: true,
+            processData: false,
+            async: false,
+            success: function(data) {
+                //alert("success")
+                //alert(data)
+                //alert(JSON.stringify(data))
+                console.log('Success!');
+            if (data.status_code=='1') {
+
+                data1=data;
+
+                         // $("#ajaxResponse").append("<b>Succesfully Uploaded</b> ");
+
+                           // document.getElementById("ajaxResponse").append.text("Succesfully Uploaded");
+            document.getElementById('ajaxResponse2').innerHTML = '';
+
+document.getElementById('ajaxResponse').innerHTML = 'Succesfully Uploaded!';
+
+document.getElementById("file-form").reset();
+
+
+
+
+                                        // window.location.href='NewAuthorize.html'
+/*
+                            setTimeout(function(){ 
+            window.location.href='NewAuthorize.html'
+
+                            }, 2000);
+
+*/
+
+            //alert(data.msg);
+
+
+}
+                        else if (data.status_code=='0') {
+
+            //alert("Failed, Please Try Again");
+            //alert(data.msg);
+            document.getElementById('ajaxResponse').innerHTML = '';
+
+document.getElementById('ajaxResponse2').innerHTML = data.msg;
+document.getElementById("file-form").reset();
+}
+        
+
+
+            },
+            error: function(e) {
+                //alert( JSON.stringify(e))
+                
+            },
+        });
+
+
+    }
+    
+</script>
+
+
+
+<hr>
+
+<!-- Footer -->
+<footer>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Copyright &copy; CleepCam</p>
+        </div>
+    </div>
+</footer>
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

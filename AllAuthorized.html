@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>CleepCam Admin</title>
+
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/form-elements.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+
+  <!-- Favicon and touch icons -->
+  <link rel="shortcut icon" href="assets/ico/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+  <script type="text/javascript">
+
+
+    var loginid = sessionStorage.getItem('loginid');
+    var uname = sessionStorage.getItem('uname');
+
+      //alert("Username:" +uname);
+
+
+      //alert("login id:" +loginid);
+
+
+
+
+
+    </script>
+
+    <!-- Custom CSS -->
+    <link href="css/thumbnail-gallery.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+
+        <![endif]-->
+
+
+        <style>
+          .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+          }
+
+          .switch input {display:none;}
+
+          .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+          }
+
+          .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+          }
+
+          input:checked + .slider {
+            background-color: #2196F3;
+          }
+
+          input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+          }
+
+          input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+          }
+
+          /* Rounded sliders */
+          .slider.round {
+            border-radius: 34px;
+          }
+
+          .slider.round:before {
+            border-radius: 50%;
+          }
+        </style>
+
+        <script type="text/javascript">
+
+
+     function checkPid(){
+          if (sessionStorage.getItem('uname')===null | sessionStorage.getItem('uname')==='null')
+
+{
+    alert("Please Login First!");
+    //window.location.href='LoginRegister.html';
+}
+else{
+  if ( sessionStorage.getItem('pid')===null | sessionStorage.getItem('pid')==='null') {
+  // alert("in Null PID on page:" + sessionStorage.getItem('pid'));
+   document.getElementById("switch").checked = false;
+ }
+
+ else{
+//   alert("PID on page:" + sessionStorage.getItem('pid'));
+   document.getElementById("switch").checked = true;
+ }
+
+}
+}
+
+window.onload=checkPid;
+
+
+
+</script>
+
+</head>
+
+<body>
+
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="AdminPage.html">CleepCam Home</a>
+
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="NewAuthorize.html">New Upload</a>
+          </li>
+
+          <li>
+            <a href="AllAuthorized.html">My Page</a>
+          </li>
+
+          <li>
+            <a href="#" ; onclick="logOut()">Logout</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+    
+  <script type="text/javascript">
+
+
+    function logOut(){
+    //alert("clearning sessionStorage");
+    sessionStorage.clear();
+        //alert("uname:"+uname);
+                //alert("id:"+loginid);
+                window.location.href='LoginRegister.html';
+
+
+              }
+            </script>
+
+            <!-- Page Content -->
+            <div>
+
+             <p style="text-align: center;">Hello:  <span id="usernamespan"></span></p>
+
+             <script type="text/javascript">
+
+              $("#usernamespan").append(uname);
+
+
+            </script>
+
+<div>
+            <label> AlertStrangers:</label>
+
+            <label class="switch">
+             <input type="checkbox" id="switch" onclick="switchfunction()";>
+<!--<input type="checkbox" checked="@(required ? "checked" : "")" id="@inputCheckBoxId" onclick="switchfunction()"; name="@inputCheckBoxId"/>
+-->
+</label>
+
+<br>
+
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+  function switchfunction()
+  {
+    var input = document.querySelector('input[type=checkbox]');
+
+    function check() {
+      var a = input.checked ? "checked" : "not checked";
+
+      if (a=="checked") {
+                    //alert("checked");
+
+               // window.location.href="http://52.36.157.26:80/video?id="+loginid+"&token=null&switch=on"
+
+               $.ajax({
+                type: 'GET',
+                url: 'http://52.36.157.26:80/video?id='+loginid+'&token=null&switch=on',
+                contentType: false,
+                cache: false,
+                crossDomain: true,
+                processData: false,
+                async: false,
+                success: function(data) {
+                        //alert("success")
+                        //alert(data)
+                        //alert(JSON.stringify(data))
+                        console.log('Success!');
+                        if (data.status_code=='1') {
+                            //alert("PID:" +data.pid);
+                            var pid=data.pid;
+                            sessionStorage.setItem('pid', +pid);
+
+
+                            //alert("Switched on");
+                          }
+
+                          else if (data.status_code=='0') {
+
+                            //alert("Failed, Please Try Again");
+                            //alert(data.message);
+                            window.location.href='AllAuthorized.html'
+                          }
+
+
+
+                        },
+                        error: function(e) {
+                        //alert( JSON.stringify(e))
+
+                      },
+
+
+
+                    })}
+               else if(a=="not checked"){
+                var pid = sessionStorage.getItem('pid');
+
+      //alert("PID to OFF:" +pid);
+
+
+
+                    //alert("Unchecked")
+
+                    $.ajax({
+                      type: 'GET',
+                      url: 'http://52.36.157.26:80/stop?pid='+pid,
+                      contentType: false,
+                      cache: false,
+                      crossDomain: true,
+                      processData: false,
+                      async: false,
+                      success: function(data) {
+                        //alert("success")
+                        //alert(data)
+                        //alert(JSON.stringify(data))
+                        console.log('Success!');
+                        if (data.status_code=='1') {
+                            //alert("MSG:" +data.message);
+
+                            //alert("Switched OFF");
+                            sessionStorage.setItem('pid', null);
+                          }
+
+                          else if (data.status_code=='0') {
+
+                            //alert("Failed, Please Try Again");
+                            //alert(data.message);
+                            window.location.href='AllAuthorized.html'
+                          }
+
+
+
+                        },
+                        error: function(e) {
+                        //alert( JSON.stringify(e))
+
+                      },
+
+
+
+                    })
+                  }
+
+                }
+                input.onchange = check;
+  //  check();
+
+}
+
+</script>
+
+<h1 class="page-header">Registerd People List</h1>
+
+
+<div id="ajaxResponse" style="display: inline-block;"></div>
+
+
+<script type="text/javascript">
+
+ $.ajax({
+  type: 'GET',
+  url: 'http://52.36.157.26:80/findfrinds?id='+loginid,
+  contentType: false,
+  cache: false,
+  crossDomain: true,
+  processData: false,
+  async: false,
+
+
+  success: function(data) {
+                        //alert("success")
+                        //alert(data)
+                        //alert(JSON.stringify(data))
+                        console.log('Success!');
+                        if (data.status_code=='1') {
+
+                            //alert("Getting List of Users");
+                            var myusers=data.users;
+
+                            //alert("Users:" +myusers);
+
+                            var myusersarray =[];
+
+                            $.each(JSON.parse(myusers), function(idx, obj) {
+    ////alert(obj.name);
+    myusersarray.push(obj.name);
+  })
+
+
+                            var $table = $( "<table></table>" );
+
+//alert(myusersarray)
+
+for ( var i = 0; i < myusersarray.length; i++ ) {
+ //   alert(myusersarray[i]);
+ var $line = $( "<tr></tr>" );
+ $line.append( $( "<td></td>" ).html( myusersarray[i] ) );
+ $table.append( $line );
+
+
+}
+
+$table.appendTo( document.body );
+$table.appendTo( $( "#ajaxResponse" ) );
+
+
+
+    //alert(myusersarray);
+
+
+                  //       $("#ajaxResponse").append("<b>Names:</b> "+myusersarray);
+
+
+
+//for (var i = 0; i < jsonData.users.length; i++) {
+  //  var counter = jsonData.users[i];
+   // //alert(myusers[0].name);
+    ////alert(counter.name);
+      //                          $("ajaxResponse").append("<b>Names:</b> "+counter.name);
+
+//}
+
+                            //var parsed = JSON.parse(users);
+                          //  //alert(parsed['name']);
+                        //$.each(data.users.name, function(idx, obj) {
+                          //  $("ajaxResponse").append("<b>Names:</b> "+obj.users);
+                        //})
+
+
+                      }
+
+                      else if (data.status_code=='0') {
+
+                            //alert("Failed to Get List, Please Try Again");
+                            window.location.href='AllAuthorized.html'
+                          }
+
+                        },
+                        error: function(e) {
+                        //alert( JSON.stringify(e))
+
+                      },
+
+
+
+                    })
+
+                  </script>
+
+                  <hr>
+
+                  <!-- Footer -->
+                  <footer>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <p>Copyright &copy; CleepCam</p>
+                      </div>
+                    </div>
+                  </footer>
+
+                </div>
+                <!-- /.container -->
+
+                <!-- jQuery -->
+                <script src="js/jquery.js"></script>
+
+                <!-- Bootstrap Core JavaScript -->
+                <script src="js/bootstrap.min.js"></script>
+
+              </body>
+
+              </html>
