@@ -129,7 +129,7 @@
 
 {
     alert("Please Login First!");
-    //window.location.href='LoginRegister.html';
+    window.location.href='LoginRegister.html';
 }
 else{
   if ( sessionStorage.getItem('pid')===null | sessionStorage.getItem('pid')==='null') {
@@ -224,9 +224,8 @@ window.onload=checkPid;
              <input type="checkbox" id="switch" onclick="switchfunction()";>
 <!--<input type="checkbox" checked="@(required ? "checked" : "")" id="@inputCheckBoxId" onclick="switchfunction()"; name="@inputCheckBoxId"/>
 -->
-</label>
-
-<br>
+<div class="slider"></div> 
+</label><br>
 
 </div>
 
